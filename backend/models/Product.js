@@ -5,6 +5,10 @@ const productSchema = new Schema({
   name: String,
   description: String,
   price: String,
+  qty: {
+    type: Number,
+    default: 1
+  }
 })
 
 module.exports= model( 'Product', productSchema)

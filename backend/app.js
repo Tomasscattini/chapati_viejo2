@@ -52,10 +52,10 @@ const auth = require('./routes/auth');
 const products = require('./routes/products');
 const cart = require('./routes/cart');
 
-app.use('/', index);
-app.use('/auth', auth);
-app.use('/products', products);
-app.use('/cart', cart);
+app.use('/api/', index);
+app.use('/api/auth', auth);
+app.use('/api/products', products);
+app.use('/api/cart', cart);
 
 // Uncomment this line for production
 // app.get('/*', (req, res) => res.sendFile(__dirname + '/public/index.html'));

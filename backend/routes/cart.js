@@ -8,9 +8,9 @@ const {
    getMyCart
 } = require('../controllers/cart')
 
-router.get('/addtocart/:id', catchErrs(addProductToCart))
-router.get('/editqty/:id/:qty', catchErrs(changeProductQty))
-router.get('/removefromcart/:id', catchErrs(removeProductFromCart))
-router.get('/getmycart', catchErrs(getMyCart))
+router.get('/addtocart/:id', isAuth, catchErrs(addProductToCart))
+router.get('/editqty/:id/:qty', isAuth, catchErrs(changeProductQty))
+router.get('/remove/:id', isAuth, catchErrs(removeProductFromCart))
+router.get('/get', isAuth, catchErrs(getMyCart))
 
 module.exports = router;

@@ -10,6 +10,10 @@ const MenuStyled = styled.nav`
     .menu-btn-mobile {
         height: 50px;
         cursor: pointer;
+        transition: all .4s ease;
+        &:hover {
+            transform: rotate(90deg);
+        }
     }
     .menu {
         height: 100vh;
@@ -25,7 +29,7 @@ const MenuStyled = styled.nav`
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
-        transition: all .5s ease-in-out;
+        transition: all .5s cubic-bezier(0,1.19,1,1);
         .top {
             display: flex;
             justify-content: space-between;
@@ -38,6 +42,10 @@ const MenuStyled = styled.nav`
             }
             .close {
                 height: 30px;
+                transition: all .3s ease;
+                &:hover {
+                    transform: rotate(-90deg);
+                }
             }
         }
         .middle {
@@ -46,12 +54,18 @@ const MenuStyled = styled.nav`
                 flex-direction: column;
                 justify-content: space-around;
                 height: 65vh;
-                padding-left: 80px;
+                padding-left: 20vw;
                 a {
                     color: white;
+                    transition: color .3s ease;
                     li {
                         font-size: 1.8rem;
                         font-weight: 600;
+                        transform: skew(20deg, 5deg) rotate(-20deg);
+                        transition: transform .5s ease-out .1s;
+                    }
+                    &:hover {
+                        color: #008B70;
                     }
                 }
             }
@@ -61,12 +75,24 @@ const MenuStyled = styled.nav`
             justify-content: center;
             align-items: center;
             img {
-                margin: 5px;
+                margin: 2vw;
+                opacity: 0;
+                transition: opacity .3s ease-in .5s;
+                transition: filter .3s ease;
+                &:hover {
+                    filter: invert(20%);
+                }
             }
         }
     }
     .show {
         top: 0;
+        .middle ol a li {
+            transform: skew(0) rotate(0);
+        }
+        .bottom img {
+            opacity: 1;
+        }
     }
 `
 

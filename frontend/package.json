@@ -35,6 +35,8 @@
     ]
   },
   "dependencies": {
+    "gsap": "^3.6.0",
+    "react-responsive-carousel": "^3.2.12",
     "react-router-hash-link": "^2.4.0"
   }
 }

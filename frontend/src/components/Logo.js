@@ -7,8 +7,14 @@ const LogoStyled = styled.div`
     top: 10px;
     left: 10px;
     z-index: 5;
-    img {
-        height: 40px;
+    a {
+        cursor: none;
+        img {
+            height: 40px;
+            &:hover {
+                        filter: invert(20%);
+                    }
+        }
     }
 `;
 

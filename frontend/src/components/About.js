@@ -76,7 +76,7 @@ const About = () => {
                 backgroundColor: '#C7604A',
                 scrollTrigger: {
                     trigger: container,
-                    start: "top center",
+                    start: "top 40%",
                     end: "top 100px",
                     scrub: true
                 }

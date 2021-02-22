@@ -9,7 +9,6 @@ const MenuStyled = styled.nav`
     z-index: 500;
     .menu-btn-mobile {
         height: 50px;
-        cursor: pointer;
         transition: all .4s ease;
         &:hover {
             transform: rotate(90deg);
@@ -38,7 +37,7 @@ const MenuStyled = styled.nav`
             padding: 10px;
             img {
                 height: 40px;
-                cursor: pointer;
+                cursor: none;
             }
             .close {
                 height: 30px;
@@ -58,6 +57,7 @@ const MenuStyled = styled.nav`
                 a {
                     color: white;
                     transition: color .3s ease;
+                    cursor: none;
                     li {
                         font-size: 1.8rem;
                         font-weight: 600;
@@ -74,13 +74,16 @@ const MenuStyled = styled.nav`
             display: flex;
             justify-content: center;
             align-items: center;
-            img {
-                margin: 2vw;
-                opacity: 0;
-                transition: opacity .3s ease-in .5s;
-                transition: filter .3s ease;
-                &:hover {
-                    filter: invert(20%);
+            a {
+                cursor: none;
+                img {
+                    margin: 2vw;
+                    opacity: 0;
+                    transition: opacity .3s ease-in .5s;
+                    transition: filter .3s ease;
+                    &:hover {
+                        filter: invert(20%);
+                    }
                 }
             }
         }
@@ -90,7 +93,7 @@ const MenuStyled = styled.nav`
         .middle ol a li {
             transform: skew(0) rotate(0);
         }
-        .bottom img {
+        .bottom a img {
             opacity: 1;
         }
     }

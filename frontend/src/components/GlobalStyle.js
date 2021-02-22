@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
         height: 100vh;
         margin: 0;
         padding: 0;
+        scroll-behavior: smooth;
     }
     body {
         background-color: rgba(138, 104, 70, 0.17);
@@ -18,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         -ms-overflow-style: none;
         scrollbar-width: none;
-        cursor: url('./images/cursor.png'), auto;
+        cursor: none;
     }
     body::-webkit-scrollbar {
     display: none;
@@ -38,6 +39,19 @@ const GlobalStyle = createGlobalStyle`
     }
     p, li, a {
         font-size: 1rem;
+    }
+
+    .expand {
+        animation: expand .3s linear;
+    }
+    @keyframes expand {
+        from {
+            transform: scale(1) translate(-50%, -50%);
+        }
+        to {
+            transform: scale(3) translate(0, 0);
+            opacity: 0;
+        }
     }
 `
 

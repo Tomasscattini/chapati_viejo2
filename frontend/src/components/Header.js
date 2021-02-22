@@ -16,15 +16,17 @@ h1 {
     padding: 0 20px;
     line-height: 1;
     span:nth-of-type(1) {
-    align-self: flex-end;
+        align-self: flex-end;
     }
     span:nth-of-type(2) {
-    align-self: center;
-    margin-left: 10vw;
+        align-self: center;
+        margin-left: 10vw;
+        animation-delay: .4s;
     }
     span:nth-of-type(3) {
-    align-self: flex-start;
-    margin-left: 10vw;
+        align-self: flex-start;
+        margin-left: 10vw;
+        animation-delay: .8s;
     }
 }
 #carousel {
@@ -36,7 +38,7 @@ h1 {
 const Header = () => {
     return (
         <HeaderStyled>
-        <h1><span>consciente</span><br/><span>colectivo</span><br/><span>sustentable</span></h1>
+        <h1><span className="animate__animated animate__backInLeft">consciente</span><br/><span className="animate__animated animate__backInLeft">colectivo</span><br/><span className="animate__animated animate__backInLeft">sustentable</span></h1>
         <div id="carousel">
           <Carousel
             showArrows={false}

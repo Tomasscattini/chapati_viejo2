@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { HashLink } from 'react-router-hash-link';
 
@@ -21,7 +21,7 @@ const Logo = () => {
 
     return (
         <LogoStyled>
-           <HashLink to="#top"><img src="./images/chapatiblanco.png" alt="Logo Chapati" /></HashLink> 
+           <HashLink to="/home#top"><img src="./images/chapatiblanco.png" alt="Logo Chapati" /></HashLink> 
         </LogoStyled>
     );
 };

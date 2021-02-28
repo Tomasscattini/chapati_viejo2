@@ -13,6 +13,7 @@ import Menu from './components/Menu.js';
 import MenuBtn from './components/MenuBtn';
 import Signup from './pages/forms/Signup';
 import Login from './pages/forms/Login';
+import RecoverPassword from './pages/forms/RecoverPassword';
 
 const Router = () => {
   const [ enter, setEnter ] = useState(true);
@@ -38,6 +39,7 @@ const Router = () => {
           <Route path="/menu" component={MenuMobile} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
+          <Route path="/recover-password" component={RecoverPassword} />
           <Route component={NotFound} />
         </Switch>
       </> : 

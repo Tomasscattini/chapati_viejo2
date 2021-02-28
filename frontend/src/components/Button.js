@@ -7,6 +7,7 @@ export const Button = styled.button`
    padding: 15px 0;
    color: white;
    font-family: ${props=>props.theme.font.primary};
+   font-weight: bold;
    border-radius: 1rem;
    cursor: pointer;
    transition: all .3s ease;

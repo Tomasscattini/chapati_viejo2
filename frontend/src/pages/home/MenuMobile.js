@@ -1,7 +1,6 @@
 import React from 'react';
 import { HashLink } from 'react-router-hash-link';
 import styled from 'styled-components';
-import MenuBtn from '../../components/MenuBtn';
 
 const MenuStyled = styled.div`
     position: relative;

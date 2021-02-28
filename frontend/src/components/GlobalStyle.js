@@ -9,9 +9,9 @@ const GlobalStyle = createGlobalStyle`
         scroll-behavior: smooth;
     }
     body {
-        background-color: rgba(138, 104, 70, 0.17);
+        background-color: ${props=>props.theme.color.color1};
         padding-top: 60px;
-        font-family: 'Montserrat', sans-serif;
+        font-family: ${props=>props.theme.font.primary};
         font-size: 16px;
         overflow-x: hidden;
         width: 100vw;
@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         -ms-overflow-style: none;
         scrollbar-width: none;
-        cursor: none;
+        ${'' /* cursor: none; */}
     }
     body::-webkit-scrollbar {
     display: none;

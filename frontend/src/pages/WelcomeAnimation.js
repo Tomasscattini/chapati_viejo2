@@ -9,39 +9,67 @@ const WelcomeStyled = styled.div`
     justify-content: center;
     align-items: center;
     perspective: 500px;
-    animation: welcome .5s ease;
+    animation: welcome 2s ease;
     img {
-        height: 300px;
+        height: 100px;
         width: auto;
-        animation: imageLeft .5s ease .5s;
+        animation: imageBigger 2s steps(1,end), animImage .8s ease 1.2s;
     }
 
     @keyframes welcome {
         0% {
-            background-color: #7fb6a2;
+            background-color: ${props=>props.theme.color.color3};
+        }
+        19% {
+            background-color: ${props=>props.theme.color.color3};
         }
         20% {
-            background-color: #008b70;
+            background-color: ${props=>props.theme.color.color2};
+        }
+        39% {
+            background-color: ${props=>props.theme.color.color2};
         }
         40% {
-            background-color: #c7604a;
+            background-color: ${props=>props.theme.color.color1};
+        }
+        59% {
+            background-color: ${props=>props.theme.color.color1};
         }
         60% {
-            background-color: #8a6846;
+            background-color: ${props=>props.theme.color.color6};
         }
         80% {
-            background-color: #e3c802;
+            opacity: 1;
         }
         100% {
-            background-color: #6599cc;
+            background-color: ${props=>props.theme.color.color6};
+            opacity: 0;
         }
     }
 
-    @keyframes imageLeft {
-        from {
-            transform: translateZ(0);
-        } to {
-            transform: translateZ(800px);
+    @keyframes imageBigger {
+        0% {
+            height: 120px;
+        }
+        20% {
+            height: 140px;
+        }
+        40% {
+            height: 160px;
+        }
+        60% {
+            height: 180px;
+        } 
+        100% {
+            height: 180px;
+        }
+    }
+    @keyframes animImage {
+        0 %{
+            transform: rotate(0);
+        }
+        100% {
+            transform: rotate(678deg);
         }
     }
 `;
@@ -49,7 +77,7 @@ const WelcomeStyled = styled.div`
 const WelcomeAnimation = () => {
     return (
         <WelcomeStyled>
-            <img src="./images/casa.png" alt="Casa de Chapati"/>
+            <img src="./images/hojita.png" alt="Logo de Chapati"/>
         </WelcomeStyled>
     );
 };

@@ -8,9 +8,8 @@ const LogoStyled = styled.div`
     left: 10px;
     z-index: 5;
     a {
-        cursor: none;
         img {
-            height: 40px;
+            height: 30px;
             &:hover {
                         filter: invert(20%);
                     }
@@ -19,24 +18,10 @@ const LogoStyled = styled.div`
 `;
 
 const Logo = () => {
-    const [ logo, setLogo ] = useState("./images/chapatinegro.png");
-
-    useEffect(() => {
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > window.innerHeight - 200) {
-                setLogo("./images/chapatiblanco.png")
-            } else {
-                setLogo("./images/chapatinegro.png")
-            }
-        });
-        return () => {
-            window.removeEventListener('scroll', ()=>{})
-        };
-    }, []);
 
     return (
         <LogoStyled>
-           <HashLink to="#top"><img src={logo} alt="Logo Chapati" /></HashLink> 
+           <HashLink to="#top"><img src="./images/chapatiblanco.png" alt="Logo Chapati" /></HashLink> 
         </LogoStyled>
     );
 };

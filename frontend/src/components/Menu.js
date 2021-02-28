@@ -8,10 +8,41 @@ const MenuStyled = styled.nav`
     right: 20px;
     z-index: 500;
     .menu-btn-mobile {
-        height: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 20px;
+        width: 30px;
         transition: all .4s ease;
+        cursor: pointer;
         &:hover {
             transform: rotate(90deg);
+        }
+        &:hover span:nth-of-type(1) {
+            transform: translateY(7px);
+        }
+        &:hover span:nth-of-type(2) {
+            transform: rotate(90deg);
+        }
+        &:hover span:nth-of-type(3) {
+            transform: translateY(-7px);
+            }
+        span {
+            width: 100%;
+            height: 6px;
+            transition: all .4s ease;
+            mix-blend-mode: multiply;
+        }
+        span:nth-of-type(1) {
+            background-color: ${props=>props.theme.color.color3};
+        }
+        span:nth-of-type(2) {
+            background-color: ${props=>props.theme.color.color6};
+            transform: translate(-3px) rotate(-10deg);
+        }
+        span:nth-of-type(3) {
+            background-color: ${props=>props.theme.color.color5};
         }
     }
     .menu {
@@ -41,6 +72,7 @@ const MenuStyled = styled.nav`
             }
             .close {
                 height: 30px;
+                cursor: pointer;
                 transition: all .3s ease;
                 &:hover {
                     transform: rotate(-90deg);
@@ -57,7 +89,7 @@ const MenuStyled = styled.nav`
                 a {
                     color: white;
                     transition: color .3s ease;
-                    cursor: none;
+                    ${'' /* cursor: none; */}
                     li {
                         font-size: 1.8rem;
                         font-weight: 600;
@@ -65,7 +97,7 @@ const MenuStyled = styled.nav`
                         transition: transform .5s ease-out .1s;
                     }
                     &:hover {
-                        color: #008B70;
+                        color: ${props=>props.theme.color.color2};
                     }
                 }
             }
@@ -75,7 +107,7 @@ const MenuStyled = styled.nav`
             justify-content: center;
             align-items: center;
             a {
-                cursor: none;
+                ${'' /* cursor: none; */}
                 img {
                     margin: 2vw;
                     opacity: 0;
@@ -108,7 +140,9 @@ const Menu = () => {
 
     return (
         <MenuStyled>
-            <img onClick={toggleMenu} className="menu-btn-mobile" src="./images/hamburguerMenu.svg" alt="Menu hamburguesa" />
+            <div onClick={toggleMenu} className="menu-btn-mobile">
+                <span></span><span></span><span></span>
+            </div>
             <div ref={$menu} className="menu">
                 <div className="top">
                     <HashLink to="#top"><img onClick={toggleMenu} className="logo" src="./images/chapatiblanco.png" alt="Logo Chapati blanco" /></HashLink>
@@ -117,7 +151,7 @@ const Menu = () => {
                 <div className="middle">
                     <ol>
                         <HashLink onClick={toggleMenu} to="#about"><li>Sobre Chapati</li></HashLink>
-                        <HashLink onClick={toggleMenu} to="#us"><li>Quienes somos</li></HashLink>
+                        <HashLink onClick={toggleMenu} to="#people"><li>Quienes somos</li></HashLink>
                         <HashLink onClick={toggleMenu} to="#works"><li>Qué hacemos</li></HashLink>
                         <HashLink onClick={toggleMenu} to="#store"><li>Tienda Consciente</li></HashLink>
                         <HashLink onClick={toggleMenu} to="#volunteerings"><li>Voluntariados</li></HashLink>

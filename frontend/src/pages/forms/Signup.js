@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import authService from '../../services/index';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import styled from 'styled-components';
 import { Button } from '../../components/Button';
+
+const { signup } = authService;
 
 const SignupStyled = styled.div`
     position: relative;
@@ -72,11 +75,6 @@ const SignupStyled = styled.div`
                 }
             }
         }
-        .error-msg {
-            color: ${props=>props.theme.color.color3};
-            font-weight: bold;
-            font-size: .7rem;
-        }
         button {
             text-transform: uppercase;
         }
@@ -103,10 +101,21 @@ const SignupStyled = styled.div`
             font-size: .8rem;
         }
     }
+    .error-msg {
+        color: ${props=>props.theme.color.color3};
+        font-weight: bold;
+        font-size: .7rem;
+    }
+    .server-msg {
+        max-width: 90%;
+        margin: 10px auto;
+    }
 `;
 
 
-const Signup = () => {
+const Signup = ({history}) => {
+    const [error, setError] = useState(null)
+
     return (
         <SignupStyled>
             <Link to="/home">
@@ -117,6 +126,9 @@ const Signup = () => {
             </Link>
             <h3>Crear cuenta</h3>
             <p className="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+
+            { error && <div className="error-msg server-msg">{error}</div>}
+
             <Formik
             initialValues={{ username: '', email: '', password: '', terms: false }}
             validate={values => {
@@ -140,11 +152,15 @@ const Signup = () => {
                 }
                 return errors;
             }}
-            onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-                }, 400);
+            onSubmit={ async (values, { setSubmitting }) => {
+                try {
+                    await signup(values);
+                    setSubmitting(false);
+                    history.push('/confirm-email');
+                } catch(err) {
+                    if(err.response.status === 406) setError('Al parecer hay un error con el email o contraseña, quizás ya existe ese correo en nuestra base de datos!');
+                    if(err.response.status === 500) setError('Hubo un error en el servidor, por favor intentá más tarde');
+                };
             }}
             >
             {({ isSubmitting }) => (
@@ -173,7 +189,7 @@ const Signup = () => {
                     name="terms" 
                     id="terms"
                 />
-                <label>Acepto los <Link to="#">Términos y Condiciones</Link></label>
+                <label htmlFor="terms">Acepto los <Link to="#">Términos y Condiciones</Link></label>
                 </div>
                 <ErrorMessage name="terms" component="div"  className="error-msg"></ErrorMessage>
                 <Button type="submit" disabled={isSubmitting}>

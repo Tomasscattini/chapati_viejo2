@@ -2,24 +2,30 @@ import axios from 'axios';
 let baseURL;
 
 process.env.NODE_ENV === 'production'
-  ? (baseURL = 'here should be your production endpoint')
-  : (baseURL = 'http://localhost:3000');
+  ? (baseURL = '/api')
+  : (baseURL = 'http://localhost:3000/api/auth');
 
 const service = axios.create({ withCredentials: true, baseURL });
 
-const MY_SERVICE = {
-  test: async () => {
-    return await service.get('/');
+const authService = {
+  login: async (user) => {
+    return await service.post('/login', user);
   },
   signup: async (user) => {
-    return await SERVICE.post('/signup', user);
+    return await service.post('/signup', user);
   },
-  login: async (user) => {
-    return await SERVICE.post('/login', user);
+  edit: async (id, user) => {
+    return await service.post(`/edit/${id}`, user);
+  },
+  uploadImg: async (id, img) => {
+    return await service.post(`/upload-photo/${id}`, img);
   },
   logOut: async () => {
-    return await SERVICE.get('/logout');
+    return await service.get('/logout');
+  },
+  loggedIn: async () => {
+    return await service.get('/loggedin');
   }
 };
 
-export default MY_SERVICE;
+export default authService;

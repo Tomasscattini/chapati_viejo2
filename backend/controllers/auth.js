@@ -23,7 +23,7 @@ exports.loginProcess = (req, res, next) => {
   }
 
 exports.signupProcess = async (req, res) => {
-        const {email, password } = req.body
+        const {username, email, password } = req.body
         if (!email || !password) {
             return res.status(406).json({
                message: "Indicate email and password"
@@ -38,7 +38,7 @@ exports.signupProcess = async (req, res) => {
         const salt = bcrypt.genSaltSync(12)
         const hashPass = bcrypt.hashSync(password, salt)
         const newUser = await User.create({
-            username: email,
+            username,
             email,
             password: hashPass
         })

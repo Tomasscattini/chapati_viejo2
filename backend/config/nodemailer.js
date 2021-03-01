@@ -7,7 +7,7 @@ let transporter = nodemailer.createTransport({
     }
 })
 exports.emailConfirmacion = (email, id) => {
-    const url = `https://tierra-roja.herokuapp.com/auth/confirm/${email}/${id}`
+    const url = `https://chapati-delta.com/api/auth/confirm/${email}/${id}`
 
     return transporter.sendMail({
         from: 'chapatidelta@hotmail.com',

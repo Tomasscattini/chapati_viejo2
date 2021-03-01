@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Theme from './components/Theme';
+import { useContextInfo } from './hooks/index';
 
 import GlobalStyle from './components/GlobalStyle';
 import WelcomeAnimation from './pages/WelcomeAnimation';
@@ -14,9 +15,12 @@ import MenuBtn from './components/MenuBtn';
 import Signup from './pages/forms/Signup';
 import Login from './pages/forms/Login';
 import RecoverPassword from './pages/forms/RecoverPassword';
+import Avatar from './components/Avatar';
+import ConfirmEmail from './components/messages/ConfirmEmail';
 
 const Router = () => {
-  const [ enter, setEnter ] = useState(true);
+  const [ enter, setEnter ] = useState(false);
+  const { user } = useContextInfo();
 
   useEffect(() => {
     setTimeout(()=> {
@@ -31,6 +35,7 @@ const Router = () => {
       {enter ? 
       <>
         <Logo />
+        <Avatar />
         {/* <Menu /> */}
         <MenuBtn />
         <Switch>
@@ -38,6 +43,7 @@ const Router = () => {
           <Route path="/home" component={Home} />
           <Route path="/menu" component={MenuMobile} />
           <Route path="/signup" component={Signup} />
+          <Route path="/confirm-email" component={ConfirmEmail} />
           <Route path="/login" component={Login} />
           <Route path="/recover-password" component={RecoverPassword} />
           <Route component={NotFound} />

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useContextInfo } from '../hooks/index';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import LeafBackground from './LeafBackground';
@@ -9,6 +10,7 @@ const HeaderStyled = styled.header`
     z-index: 6;
     width: 100vw;
     min-height: 100vh;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,12 +35,19 @@ const HeaderStyled = styled.header`
 `;
 
 const Header = () => {
+    const [ userLogged, setUserLogged ] = useState(null);
+    const { user } = useContextInfo();
+
+    useEffect(()=> {
+        if(user) setUserLogged(user);    
+    }, [user]);
+
     return (
         <HeaderStyled>
             <LeafBackground />
-            {/* <h3 className="title">Bienvenidxs a chapati</h3> */}
-            <h3 className="title">Bienvenidx username</h3>
-            <Link to="/dashboard"><Button className="dashboard-btn">Dashboard</Button></Link>
+            {userLogged ? <><h3 className="title">Bienvenidx<br/> {userLogged.username}</h3>
+            <Link to="/dashboard"><Button className="dashboard-btn">Dashboard</Button></Link></> : <h3 className="title">Bienvenidxs a chapati</h3>}
+            
         </HeaderStyled>
     );
 };

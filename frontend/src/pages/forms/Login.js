@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import styled from 'styled-components';
 import { Button } from '../../components/Button';
+import authService from '../../services/index';
+import { useContextInfo } from '../../hooks/index';
+import styled from 'styled-components';
+
+const { login } = authService;
 
 const LoginStyled = styled.div`
     position: relative;
@@ -67,10 +71,6 @@ const LoginStyled = styled.div`
             padding-right: 10px;
             top: -47px;
         }
-        .error-msg {
-            color: ${props=>props.theme.color.color3};
-            font-weight: bold;
-        }
         button {
             text-transform: uppercase;
         }
@@ -97,9 +97,21 @@ const LoginStyled = styled.div`
             font-size: .8rem;
         }
     }
+    .error-msg {
+        color: ${props=>props.theme.color.color3};
+        font-weight: bold;
+        font-size: .7rem;
+    }
+    .server-msg {
+        max-width: 90%;
+        margin: 10px auto;
+    }
 `;
 
-const Login = () => {
+const Login = ({history}) => {
+    const [error, setError] = useState();
+    const loginFn = useContextInfo().login;
+
     return (
         <LoginStyled>
             <Link to="/home">
@@ -110,6 +122,9 @@ const Login = () => {
             </Link>
             <h3>Login</h3>
             <p className="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+
+            { error && <div className="error-msg server-msg">{error}</div>}
+
             <Formik
             initialValues={{ email: '', password: ''}}
             validate={values => {
@@ -125,11 +140,16 @@ const Login = () => {
                 }
                 return errors;
             }}
-            onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
+            onSubmit={async (values, { setSubmitting }) => {
+              try {
+                await login(values);
+                loginFn(values);
                 setSubmitting(false);
-                }, 400);
+                history.push('/home');
+              } catch(err) {
+                if(err.response.status === 401) setError('No existe ese email en nuestra base de datos, por favor crea una cuenta nueva');
+                if(err.response.status === 500) setError('Hubo un error en el servidor, por favor intentá más tarde');
+              }
             }}
             >
             {({ isSubmitting }) => (

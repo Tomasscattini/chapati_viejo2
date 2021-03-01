@@ -1,81 +1,96 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import styled from 'styled-components';
+import { Planet } from 'react-planet';
 
 const ButtonStyled = styled.div`
     position: fixed;
-    bottom: 5vh;
-    right: 10vw;
-    width: 30px;
-    height: 30px;
+    bottom: 10vh;
+    right: 22vw;
     z-index: 8;
-    transition: all .3s ease;
-    &:hover {
-        transform: scale(1.3);
-    }
-    &:hover .sub-menu-btn {
-        transform: scale(.7);
-    }
-    &>a {
-        display: block;
-        width: 100%;
-        height: 100%;
+    .center-btn {
+        position: relative;
+        left: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 25px;
+        width: 38px;
+        transition: all .4s ease;
+        cursor: pointer;
+        span {
+            width: 100%;
+            height: 8px;
+            transition: all .4s ease;
+            mix-blend-mode: multiply;
+        }
+        span:nth-of-type(1) {
+            background-color: ${props=>props.theme.color.color3};
+        }
+        span:nth-of-type(2) {
+            background-color: ${props=>props.theme.color.color6};
+            transform: translate(-3px) rotate(-10deg);
+        }
+        span:nth-of-type(3) {
+            background-color: ${props=>props.theme.color.color5};
+        }
     }
     .sub-menu-btn {
-        position: absolute;
-        width: 10px;
+        width: 20px;
         height: 10px;
-        border-radius: 50%;
         transition: all .3s ease;
+        &:hover {
+            transform: scale(1.2);
+        }
     }
-    .sub-menu-btn:nth-of-type(1) {
-        background-color: black;
-        left: 10px;
+    .chapati {
+        background-color: ${props=> props.theme.color.color3}!important;
     }
-    .sub-menu-btn:nth-of-type(2) {
-        background-color: ${props=> props.theme.color.color2};
-        left: 21px;
-        top: 5px;
+    .nosotros {
+        background-color: ${props=> props.theme.color.color2}!important;
     }
-    .sub-menu-btn:nth-of-type(3) {
-        background-color: ${props=> props.theme.color.color3};
-        left: 24px;
-        top: 16px;
+    .hacemos {
+        background-color: ${props=> props.theme.color.color5}!important;
     }
-    .sub-menu-btn:nth-of-type(4) {
-        background-color: ${props=> props.theme.color.color4};
-        left: 16px;
-        top: 26px;
+    .voluntariados {
+        background-color: ${props=> props.theme.color.color6}!important;
     }
-    .sub-menu-btn:nth-of-type(5) {
-        background-color: ${props=> props.theme.color.color5};
-        left: 4px;
-        top: 26px;
+    .tienda {
+        background-color: ${props=> props.theme.color.bg}!important;
     }
-    .sub-menu-btn:nth-of-type(6) {
-        background-color: ${props=> props.theme.color.color6};
-        left: -4px;
-        top: 16px;
-    }
-    .sub-menu-btn:nth-of-type(7) {
-        background-color: white;
-        left: -1px;
-        top: 5px;
+    .contacto {
+        background-color: ${props=> props.theme.color.color4}!important;
     }
 `;
 
 const MenuBtn = () => {
     return (
         <ButtonStyled>
-            <Link to="/menu">
-                <div className="sub-menu-btn"></div>
-                <div className="sub-menu-btn"></div>
-                <div className="sub-menu-btn"></div>
-                <div className="sub-menu-btn"></div>
-                <div className="sub-menu-btn"></div>
-                <div className="sub-menu-btn"></div>
-                <div className="sub-menu-btn"></div>
-            </Link>
+            <Planet
+                centerContent={
+                    <div className="center-btn">
+                <span></span><span></span><span></span>
+            </div>
+                }
+                autoClose
+                orbitRadius="50"
+                dragablePlanet
+                dragRadiusPlanet="10"
+                rotation={45}
+                bounceOnOpen
+            >
+                <HashLink to="/home#about"><div className="sub-menu-btn nosotros"></div></HashLink>
+                <HashLink to="/home#works"><div className="sub-menu-btn hacemos"></div></HashLink>
+                <HashLink to="/home#volunteerings"><div className="sub-menu-btn voluntariados"></div></HashLink>
+                <HashLink to="/home#store"><div className="sub-menu-btn tienda"></div></HashLink>
+                <HashLink to="/home#contact"><div className="sub-menu-btn contacto"></div></HashLink>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </Planet>
         </ButtonStyled>
     );
 };

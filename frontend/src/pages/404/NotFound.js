@@ -9,9 +9,13 @@ const NotFoundStyled = styled.main`
   height: 100vh;
   width: 100vw;
   box-sizing: border-box;
+  overflow: hidden;
+  &>div {
+    z-index: 4!important;
+  }
   h3 {
     position: relative;
-    z-index: 8;
+    z-index: 5;
     text-align: center;
     color: ${props=>props.theme.color.color2};
   }

@@ -18,7 +18,7 @@ const LoginStyled = styled.div`
     padding-top: 70px;
     .nav {
         position: absolute;
-        z-index: 9;
+        z-index: 6;
         width: 100vw;
         top: 60px;
         left: 5px;

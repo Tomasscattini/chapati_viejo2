@@ -39,7 +39,10 @@ const Header = () => {
     const { user } = useContextInfo();
 
     useEffect(()=> {
-        if(user) setUserLogged(user);    
+        if(user) setUserLogged(user);
+        return () =>{
+            setUserLogged(null);
+        };
     }, [user]);
 
     return (
@@ -47,7 +50,6 @@ const Header = () => {
             <LeafBackground />
             {userLogged ? <><h3 className="title">Bienvenidx<br/> {userLogged.username}</h3>
             <Link to="/dashboard"><Button className="dashboard-btn">Dashboard</Button></Link></> : <h3 className="title">Bienvenidxs a chapati</h3>}
-            
         </HeaderStyled>
     );
 };
